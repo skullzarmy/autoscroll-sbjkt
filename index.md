@@ -4,6 +4,8 @@ title: "Autoscroll SBJKT"
 description: "Easily add the autoscroll bookmarklet to your bookmarks bar"
 ---
 
+<link rel="stylesheet" href="assets/css/style.css">
+
 # Autoscroll SBJKT
 
 Drag the button below to your bookmarks bar to enable autoscrolling on pages with the element ID `mg-gallery`.
