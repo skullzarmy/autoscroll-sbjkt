@@ -8,13 +8,13 @@ description: "Easily add the autoscroll bookmarklet to your bookmarks bar"
 
 Drag the button below to your bookmarks bar to enable autoscrolling on pages with the element ID `mg-gallery`.
 
-<a href="javascript:(function(){const%20SCROLL_SPEED=5;const%20SCROLL_ELEMENT_ID='mg-gallery';if(!window.location.hostname.endsWith('.sbjkt.xyz')%20&&%20window.location.hostname!=='sbjkt.xyz'){console.warn('Autoscroll%20SBJKT%20only%20works%20on%20sbjkt.xyz%20and%20its%20subdomains');return;}const%20scrollContainer=document.getElementById(SCROLL_ELEMENT_ID);if(!scrollContainer){console.error(`Scrollable%20element%20with%20ID%20%22${SCROLL_ELEMENT_ID}%22%20not%20found.`);return;}let%20isProgrammaticScroll=false;const%20scrollInterval=setInterval(()=>{isProgrammaticScroll=true;scrollContainer.scrollBy(0,1);isProgrammaticScroll=false;if((scrollContainer.scrollTop+scrollContainer.clientHeight)>=scrollContainer.scrollHeight){clearInterval(scrollInterval);console.log('Reached%20the%20bottom.%20Auto-scrolling%20stopped.');}},SCROLL_SPEED);console.log('Auto-scrolling%20started.%20Click,%20scroll,%20or%20press%20any%20key%20to%20stop.');const%20stopScrolling=(event)=>{if(isProgrammaticScroll)return;clearInterval(scrollInterval);console.log('Auto-scrolling%20stopped%20by%20user%20interaction.');event.stopPropagation();event.preventDefault();document.removeEventListener('click',stopScrolling,true);document.removeEventListener('scroll',stopScrolling,true);document.removeEventListener('keydown',stopScrolling,true);};document.addEventListener('click',stopScrolling,true);document.addEventListener('scroll',stopScrolling,true);document.addEventListener('keydown',stopScrolling,true);})()" class="btn btn-primary">Autoscroll SBJKT</a>
+<a href="javascript:(function(){const%20SCROLL_SPEED=5;const%20SCROLL_ELEMENT_ID='mg-gallery';if(!window.location.hostname.endsWith('.sbjkt.xyz')%20&&%20window.location.hostname!=='sbjkt.xyz'){console.warn('Autoscroll%20SBJKT%20only%20works%20on%20sbjkt.xyz%20and%20its%20subdomains');return;}const%20scrollContainer=document.getElementById(SCROLL_ELEMENT_ID);if(!scrollContainer){console.error(`Scrollable%20element%20with%20ID%20%22${SCROLL_ELEMENT_ID}%22%20not%20found.`);return;}const%20scrollInterval=setInterval(()=>{scrollContainer.scrollBy(0,1);if((scrollContainer.scrollTop+scrollContainer.clientHeight)>=scrollContainer.scrollHeight){clearInterval(scrollInterval);console.log('Reached%20the%20bottom.%20Auto-scrolling%20stopped.');}},SCROLL_SPEED);console.log('Auto-scrolling%20started.%20Press%20any%20key%20or%20click%20to%20stop.');const%20stopScrolling=(event)=>{clearInterval(scrollInterval);console.log('Auto-scrolling%20stopped%20by%20user%20interaction.');event.stopPropagation();event.preventDefault();document.removeEventListener('click',stopScrolling,true);document.removeEventListener('keydown',stopScrolling,true);};document.addEventListener('click',stopScrolling,true);document.addEventListener('keydown',stopScrolling,true);})()" class="btn btn-primary">Autoscroll SBJKT</a>
 
 ## Installation Instructions
 
 1. Drag the **Autoscroll SBJKT** button above to your bookmarks bar.
 2. Click it on sbjkt.xyz or its subdomains where you want autoscroll enabled.
-3. To cancel scrolling, simply click, scroll, or press any button on your keyboard.
+3. To cancel scrolling, simply click or press any key on your keyboard.
 
 ---
 
@@ -40,27 +40,19 @@ javascript: (function () {
         return;
     }
 
-    // Track if scroll was programmatically initiated
-    let isProgrammaticScroll = false;
-
     // Start scrolling
     const scrollInterval = setInterval(() => {
-        isProgrammaticScroll = true;
         scrollContainer.scrollBy(0, 1);
-        isProgrammaticScroll = false;
-
         if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight) {
             clearInterval(scrollInterval);
             console.log("Reached the bottom. Auto-scrolling stopped.");
         }
     }, SCROLL_SPEED);
 
-    console.log("Auto-scrolling started. Click, scroll, or press any key to stop.");
+    console.log("Auto-scrolling started. Press any key or click to stop.");
 
-    // Stop scrolling on user interaction and prevent default action
+    // Stop scrolling on key press or mouse click, and prevent default action
     const stopScrolling = (event) => {
-        if (isProgrammaticScroll) return; // Ignore programmatic scrolls
-
         clearInterval(scrollInterval);
         console.log("Auto-scrolling stopped by user interaction.");
 
@@ -70,13 +62,11 @@ javascript: (function () {
 
         // Remove event listeners after stopping
         document.removeEventListener("click", stopScrolling, true);
-        document.removeEventListener("scroll", stopScrolling, true);
         document.removeEventListener("keydown", stopScrolling, true);
     };
 
     // Listen for user interactions to stop auto-scrolling
     document.addEventListener("click", stopScrolling, true);
-    document.addEventListener("scroll", stopScrolling, true);
     document.addEventListener("keydown", stopScrolling, true);
 })();
 ```
