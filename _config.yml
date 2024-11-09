@@ -1,6 +1,3 @@
 title: Autoscroll SBJKT
-description: A simple bookmarklet for autoscrolling
-theme: minimal-mistakes-jekyll
-remote_theme: mmistakes/minimal-mistakes
-plugins:
-    - jekyll-remote-theme
+description: "A simple bookmarklet for autoscrolling"
+theme: jekyll-theme-cayman
