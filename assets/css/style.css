@@ -10,6 +10,13 @@
     --code-border: #333333;
 }
 
+body {
+    margin: 0;
+    padding: 2.5rem 1.25rem;
+    transition: background-color 0.3s ease;
+    font-size: medium;
+}
+
 /* Dark mode styling */
 @media (prefers-color-scheme: dark) {
     body {
